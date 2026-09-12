@@ -1,13 +1,10 @@
-# 75-second genuine demo
+# Current real-app demo
 
-Record only after the real Astra benchmark succeeds. The separate runner-check mode must never be passed off as AI exploration.
+The main video shows MarkerPad, an independently operated browser document editor. Astra chooses the journey: create a document, enter Markdown, inspect the rendered note and explore export. Captions explain each step. Actions play at normal speed; waiting and unsuccessful attempts are omitted from the highlights and retained in the linked uncut recording. Download completion is not claimed.
 
-1. **0–10s:** Show Ghost’s dashboard and the Waypoint staging app. “My tests cover the paths I expect. Ghost looks for the paths I didn’t write down.”
-2. **10–20s:** Select the planted-bug URL, three Ghosts, 12 steps, Astra mode. Release Ghosts. Show the Codex subscription connection.
-3. **20–40s:** Show each persona’s live screenshots and different journey labels. Speed up long reasoning waits; label the time compression.
-4. **40–60s:** Open a genuine finding. Show expected/observed behavior, reproduction steps, and the evidence frame. Scrub backward to the action that triggered it.
-5. **60–70s:** Show a second finding from a different persona, then export the report.
-6. **70–75s:** End on “Fresh eyes before launch” and the verified product URL. Invite feedback.
+End with a brief card: **Built by Selim Harfouche using GPT-6 Astra.** Website credits remain visible independently.
+
+The checklist accessibility finding has a separate independent reproduction report in `markerpad-bug-report.md`. A future bug-focused cut should show the actual discovery and independent verification, with submission status stated accurately. Do not imply that the current exploration video includes maintainer confirmation.
 
 ## Benchmark protocol
 

@@ -2,7 +2,7 @@
 
 Autonomous beta testers powered by **GPT-6 Astra through the Codex SDK**. Give Ghost a staging URL; independent browser explorers discover journeys and return findings with evidence, reproduction steps, and screenshot replay.
 
-**Status:** local web MVP validated with real Chrome and Astra through a ChatGPT subscription. All three personas completed a seeded demo; the combined model + browser report found all five planted defects in this one run. This is a demo result, not a general reliability guarantee. Public release and Product Hunt scheduling are pending.
+**Status:** local web MVP validated with real Chrome and Astra through a ChatGPT subscription. All three personas completed a seeded demo; the combined model + browser report found all five planted defects in this one run. This is a demo result, not a general reliability guarantee. The source repository and GitHub Pages showcase are public. Product Hunt scheduling is pending.
 
 ## Start on your Mac
 
@@ -80,13 +80,13 @@ One active run at a time, maximum three explorers and thirty actions each. No ba
 
 ## Launch
 
-Read docs/launch-checklist.md, docs/launch-copy.md, docs/demo-flow.md, docs/assets-spec.md and docs/deployment.md. The organizer guide specifies September 18, 2026 at 12:01 AM Pacific for the launch. The separate scheduling cutoff, terms and SDK-only eligibility still need verification in the authenticated contest flow. No submission or account action has been performed.
+Read docs/launch-checklist.md, docs/launch-copy.md, docs/demo-flow.md, docs/assets-spec.md and docs/deployment.md. The organizer guide specifies September 18, 2026 at 12:01 AM Pacific for the launch. The separate scheduling cutoff, terms and SDK-only eligibility still need verification in the authenticated contest flow. The maker has signed in and opened a Product Hunt draft; no final submission, scheduling or legal acceptance has been completed.
 
 ## Review without running an agent
 
 Open `http://127.0.0.1:4318/showcase/` while Ghost is running, or serve `docs/site` with a static web server. The recorded report needs no login and makes no model calls. It preserves the original observations and lets viewers select a finding and jump to its screenshot.
 
-The captioned MP4 is `docs/assets/ghost-demo.mp4`. It is an edited screenshot replay, not a live screen recording. Publication steps are in `docs/publish-handoff.md`.
+The captioned MP4 is `docs/assets/ghost-demo.mp4`. It contains edited highlights from a continuous real MarkerPad browser recording, with normal-speed actions and a closing maker credit. Publication steps are in `docs/publish-handoff.md`.
 
 Recent runner additions include synthetic video uploads (`fixtures/sample-video.mp4` only), hover, double-click and explicitly logged accessibility-button activation. Each Astra decision starts with bounded recent observations rather than retaining every prior screenshot. Complex canvas interfaces can still limit coverage; see `docs/real-app-demo.md`.
 
@@ -96,8 +96,12 @@ The dashboard can optionally record each browser session as a continuous WebM vi
 
 Install the recorder once with `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers npx playwright install ffmpeg`, set `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers` in `.env`, and restart Ghost. Enable the recording checkbox before starting a run. Completed agent cards link to the original video.
 
-Recording mode shows a pointer driven by real mouse events, preserves its position across navigation, and includes click rings and gradual typing. The public demo adds plain-language captions and gentle close-ups, keeps actions at normal speed, and shortens reasoning pauses; the uncut recordings are linked separately. This is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.
+Recording mode shows a pointer driven by real mouse events, preserves its position across navigation, and includes click rings and gradual typing. The public demo adds plain-language captions and gentle close-ups, keeps actions at normal speed, and shortens reasoning pauses; the uncut recordings are linked separately. The main video uses MarkerPad; the controlled planted-bug benchmark is linked separately.
 
 ### Real-app walkthrough
 
-The [public showcase](https://selimharfouche.github.io/ghost-beta/) now leads with a real MarkerPad exploration: document creation, full Markdown entry, formatted preview, and the export flow. The video includes a cursor, click indicators, close-ups, and plain-language captions. Inspect the complete recording and report beside it. Export completion is not claimed, and the accessibility candidate remains unconfirmed. The planted-bug benchmark is presented separately.
+The [public showcase](https://selimharfouche.github.io/ghost-beta/) now leads with a real MarkerPad exploration: document creation, full Markdown entry, formatted preview, and the export flow. The video includes a cursor, click indicators, close-ups, and plain-language captions. Inspect the complete recording and report beside it. Export completion is not claimed, and the checklist accessibility candidate has now been independently reproduced in a normal browser; see [the detailed report](docs/markerpad-bug-report.md). Maintainer confirmation is pending. The planted-bug benchmark is presented separately.
+
+## Project review
+
+See [the project review](docs/project-review.md) for current product gaps, evidence limits and release blockers.

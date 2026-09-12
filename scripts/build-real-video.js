@@ -37,14 +37,16 @@ for(let i=0;i<ghost.steps.length-1;i++) {
  const zoom=s.action.action==='fill';
  const sourceEditing=label.includes('Markdown Source');
  const camera=zoom?`scale=1920:1200,zoompan=z='1+0.25*max(0,min(1,min(on/18,(${frames}-1-on)/18)))':x='${sourceEditing ? '0' : 'iw/2-iw/zoom/2'}':y='${sourceEditing ? '0' : 'min(ih-ih/zoom,max(0,750-ih/zoom/2))'}':d=1:s=1280x800:fps=25`:'scale=1280:800';
- const vf=`${camera},pad=1280:980:0:130:color=0x0b1411,drawtext=fontfile=${font}:textfile=${txt}:x=30:y=25:fontsize=30:fontcolor=white,drawtext=fontfile=${font}:textfile=${sub}:x=30:y=75:fontsize=23:fontcolor=0xcbf78b,drawtext=fontfile=${font}:text='Built by Selim Harfouche using GPT-6 Astra | Edited highlights | Actions at 1x':x=30:y=946:fontsize=18:fontcolor=0xb8c5bc`;
+ const vf=`${camera},pad=1280:980:0:130:color=0x0b1411,drawtext=fontfile=${font}:textfile=${txt}:x=30:y=25:fontsize=30:fontcolor=white,drawtext=fontfile=${font}:textfile=${sub}:x=30:y=75:fontsize=23:fontcolor=0xcbf78b,drawtext=fontfile=${font}:text='Edited highlights | Actions at 1x':x=30:y=946:fontsize=18:fontcolor=0xb8c5bc`;
  const clip=`${work}/${i}.mp4`;execFileSync('ffmpeg',['-y','-ss',String(start),'-i',`${out}/recordings/markerpad-ghost-1.webm`,'-t',String(end-start),'-vf',vf,'-an','-c:v','libx264','-profile:v','baseline','-level','3.1','-pix_fmt','yuv420p','-r','25','-crf','21',clip],{stdio:'ignore'});clips.push(`file '${i}.mp4'`);
 }
+execFileSync('ffmpeg',['-y','-f','lavfi','-i','color=c=0x0b1411:s=1280x980:r=25:d=3.5','-vf',`drawtext=fontfile=${font}:text='Ghost':x=(w-text_w)/2:y=350:fontsize=72:fontcolor=0xcbf78b,drawtext=fontfile=${font}:text='Built by Selim Harfouche':x=(w-text_w)/2:y=470:fontsize=38:fontcolor=white,drawtext=fontfile=${font}:text='using GPT-6 Astra.':x=(w-text_w)/2:y=530:fontsize=30:fontcolor=0xb8c5bc`,'-an','-c:v','libx264','-profile:v','baseline','-level','3.1','-pix_fmt','yuv420p','-crf','21',`${work}/closing.mp4`],{stdio:'ignore'});
+clips.push("file 'closing.mp4'");
 fs.writeFileSync(`${work}/list.txt`,clips.join('\n'));
-execFileSync('ffmpeg',['-y','-f','concat','-safe','0','-i',`${work}/list.txt`,'-c','copy','-movflags','+faststart',`${out}/explained-demo.mp4`],{stdio:'ignore'});
-execFileSync('ffmpeg',['-y','-i',`${out}/explained-demo.mp4`,'-c:v','libvpx-vp9','-crf','33','-b:v','0',`${out}/explained-demo.webm`],{stdio:'ignore'});
-execFileSync('ffmpeg',['-y','-ss','2','-i',`${out}/explained-demo.mp4`,'-frames:v','1',`${out}/explained-poster.jpg`],{stdio:'ignore'});
-for(const name of ['ghost-demo.mp4','ghost-demo-compatible.mp4'])fs.copyFileSync(`${out}/explained-demo.mp4`,`${out}/${name}`);
-fs.copyFileSync(`${out}/explained-demo.webm`,`${out}/ghost-demo.webm`);
-fs.copyFileSync(`${out}/explained-demo.mp4`,'docs/assets/ghost-demo.mp4');
+execFileSync('ffmpeg',['-y','-f','concat','-safe','0','-i',`${work}/list.txt`,'-c','copy','-movflags','+faststart',`${out}/launch-demo.mp4`],{stdio:'ignore'});
+execFileSync('ffmpeg',['-y','-i',`${out}/launch-demo.mp4`,'-c:v','libvpx-vp9','-crf','33','-b:v','0',`${out}/launch-demo.webm`],{stdio:'ignore'});
+execFileSync('ffmpeg',['-y','-ss','2','-i',`${out}/launch-demo.mp4`,'-frames:v','1',`${out}/launch-poster.jpg`],{stdio:'ignore'});
+for(const name of ['ghost-demo.mp4','ghost-demo-compatible.mp4'])fs.copyFileSync(`${out}/launch-demo.mp4`,`${out}/${name}`);
+fs.copyFileSync(`${out}/launch-demo.webm`,`${out}/ghost-demo.webm`);
+fs.copyFileSync(`${out}/launch-demo.mp4`,'docs/assets/ghost-demo.mp4');
 console.log('Real app demo exported from actual action timestamps.');

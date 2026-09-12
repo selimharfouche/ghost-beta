@@ -16,8 +16,12 @@ The showcase must identify limitations honestly. A completed exploration means t
 
 ## Successful bounded exploration
 
-Final run: 3c643512-edd7-4252-869c-c25c2410075b. One Astra Ghost completed twelve actions and thirteen screenshots. It activated accessibility, created a synthetic document, edited Markdown source, checked rendered formatting, and opened export options. It did not download an export or prove reload persistence. No manual journey script or expected defect list was supplied.
+Earlier screenshot-only run: 3c643512-edd7-4252-869c-c25c2410075b. One Astra Ghost completed twelve actions and thirteen screenshots. It activated accessibility, created a synthetic document, edited Markdown source, checked rendered formatting, and opened export options. It did not download an export or prove reload persistence. No manual journey script or expected defect list was supplied.
 
 Astra produced three review candidates: delayed accessibility controls, unnamed checklist controls, and an undiscoverable blank-editor text input. These remain unconfirmed. In particular, Ghost's DOM label extraction and observation timing can explain some accessibility symptoms; the report is not a definitive accessibility audit of MarkerPad. The original model confidence labels remain preserved in the raw record.
 
 Usage: 180,790 input + 1,120 output = 181,910 subscription tokens. This is not a dollar charge or a controlled efficiency comparison with the earlier three-persona demo. External spend remains $0. Another attempt, cd93e24a-8584-48f6-a4b5-a4ffc3b5f9e4, timed out during initial navigation with zero model usage; it is not included as a successful run.
+
+## Current main recording and verification
+
+The main recorded run is `5ca3d8ea-f00a-4e7e-88d8-867ffd48961d`: twelve decisions, thirteen observations, a full Markdown note and export-menu exploration. `scripts/build-real-video.js` builds the captioned highlights. The checkbox naming finding was independently reproduced on September 12 in a normal browser, including after reload and state toggle; see `markerpad-bug-report.md`. Historical confidence notes above describe the state at the time of those runs. Maintainer delivery is tracked in the bug report.

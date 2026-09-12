@@ -17,7 +17,7 @@ Verified September 12, 2026 against the [organizer’s launch guide](https://app
 
 ## Still to verify in the account flow
 
-The public contest page renders a zero countdown inconsistent with the future launch date. The guide specifies the launch date/time, **not a separate final scheduling cutoff**. The submit link redirected to login. Do not claim the exact submission cutoff, eligibility terms, judging rules, or SDK-only eligibility has been verified. Inspect the final contest form and terms with the owner before scheduling. No legal terms have been accepted and no submission has been published.
+The public contest page renders a zero countdown inconsistent with the future launch date. The guide specifies the launch date/time, **not a separate final scheduling cutoff**. The maker has since signed in and opened the contest draft. Do not claim the exact submission cutoff, eligibility terms, judging rules, or SDK-only eligibility has been verified. Inspect the final contest form and terms with the owner before scheduling. No legal terms have been accepted and no submission has been published.
 
 ## Release gates
 
@@ -26,10 +26,12 @@ The public contest page renders a zero countdown inconsistent with the future la
 - [x] Local dashboard and planted-bug app implemented.
 - [x] Real Chromium benchmark completes outside the task’s macOS sandbox.
 - [x] Actual Astra benchmark completes and planted findings are checked against evidence.
-- [x] Capture gallery screenshots and captioned screenshot-replay video from genuine runs.
+- [x] Capture gallery screenshots and a captioned real-browser MarkerPad video.
 - [x] Clean dependency install and tests verified in a separate directory on this Mac.
-- [ ] Public source/download link available; verify on a second machine after publication.
-- [ ] Maker account and name supplied; final launch fields reviewed.
+- [x] Public source and GitHub Pages showcase available.
+- [ ] Verify installation on a second machine/account.
+- [x] Maker name supplied: Selim Harfouche.
+- [ ] Final maker profile and launch fields reviewed.
 - [ ] Confirm contest terms and SDK usage eligibility in account flow.
 - [ ] Schedule September 18 via contest link; verify scheduled-state confirmation.
 

@@ -5,13 +5,13 @@
 Distribute Ghost as a local developer tool. Each developer runs Node + Chrome + Codex, using their own ChatGPT login. This preserves the requested subscription route. Do not host an unauthenticated public endpoint that runs commands against the maker’s Codex account.
 
 1. Complete the real-browser/Astra validation gates in launch-checklist.md.
-2. Create a public source repository under the maker’s account, or upload a release archive. The local Git repository is ready, and the owner’s existing GitHub login is available. Private repository: https://github.com/selimharfouche/ghost-beta. Public distribution is a separate release step.
+2. Public source is available at https://github.com/selimharfouche/ghost-beta.
 3. Exclude `.env`, runs, node_modules, local SDK session files, credentials and raw private screenshots. Review the staged file list before pushing.
-4. Set the Product Hunt website URL to a public readme/release or an independently hosted marketing page that links to the release. The local `/about` route contains finished landing-page copy.
+4. Use https://selimharfouche.github.io/ghost-beta/ as the Product Hunt website URL.
 5. Test the install/download on a separate machine. Capture a real demo video and upload real product screenshots.
 6. Schedule the contest entry only after confirming rules and launch readiness.
 
-No external hosting was provisioned; no paid plan or domain was purchased. A public landing page can be deployed after a source/download URL exists. The browser worker requires a full process runtime, so it is not a normal static/serverless web deployment.
+GitHub Pages hosts the public static showcase. No paid plan or domain was purchased. The browser worker requires a full process runtime, so it is not a normal static/serverless web deployment.
 
 ## Local operating model
 
@@ -27,4 +27,4 @@ That is a separate architecture decision: authenticated users, isolated browser 
 
 `docs/site` contains a self-contained landing page and actual recorded evidence. Serve it with any static host. The optional, manually triggered `docs/deploy/pages.yml` is a GitHub Pages template, not an active workflow. GitHub Pages supports public repositories on GitHub Free: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages.
 
-The proposed public source license is MIT; review `LICENSE` before approving publication. Evidence in the showcase is limited to synthetic/demo material. Raw SDK state and the local OpenCut clone are excluded.
+The owner approved public distribution under the included MIT license. Evidence in the showcase is limited to synthetic/demo material. Raw SDK state and the local OpenCut clone are excluded.

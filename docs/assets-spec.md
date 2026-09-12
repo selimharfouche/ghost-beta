@@ -23,13 +23,15 @@ Do not generate fake app screenshots, benchmark scores, testimonials, user count
 - `assets/completed-report.png`: completed grouped report.
 - `assets/mobile-evidence.png`: actual mobile-overflow evidence, opened at step 6.
 
-These are original dashboard screenshots; no generated findings or simulated UI. A narrated final launch video remains to be recorded using demo-flow.md.
+These are original dashboard screenshots; no generated findings or simulated UI. The current captioned video is silent and uses the real MarkerPad browser recording.
 
 ## Delivered files
 
 - `thumbnail.png`: 240 × 240 Ghost thumbnail.
 - `completed-report.png`, `live-exploration.png`, `mobile-evidence.png`: genuine dashboard captures.
 - `interactive-report.png`, `real-app-report.jpg`: verified recorded-report UI.
-- `ghost-demo.mp4`: captioned 76-second screenshot replay combining the seeded benchmark and real MarkerPad exploration. No audio or simulated interface.
+- `ghost-demo.mp4`: captioned real MarkerPad browser highlights with a brief closing credit. No audio or simulated interface.
 
-The real-app accessibility candidates are unconfirmed and may reflect Ghost’s observation limitations. The planted-bug result is a single controlled run, not a general accuracy rate.
+The checklist finding has a separate independent reproduction; other accessibility candidates remain unconfirmed. The planted-bug result is a single controlled run, not a general accuracy rate.
+
+Current website video: `site/launch-demo.mp4` and `site/launch-demo.webm`, 1280 × 980. This is the shipped format; the 1920 × 1080 size above is an optional production target, not a verified contest requirement.
