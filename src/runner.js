@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { installRecordingPointer, moveRecordingPointer } from "./recording-pointer.js";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -89,6 +90,8 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           acceptDownloads: false,
           recordVideo: run.recordVideo ? { dir: path.join(dir, "video"), size: { width: persona.width, height: persona.height } } : undefined,
         });
+        if (run.recordVideo) await ctx.addInitScript(installRecordingPointer);
+        const pointer = { x: 28, y: 28 };
         const origin = new URL(run.url).origin;
         const blockedOrigins = new Set();
         await ctx.route("**/*", (route) => {
@@ -255,7 +258,10 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
             try {
               safeAction(d, target);
               const locator = page.locator(`[data-ghost-id="${d.target}"]`);
-              if (d.action === "click") await locator.click();
+              if (run.recordVideo && ["click", "doubleclick", "hover", "fill", "select"].includes(d.action))
+                await moveRecordingPointer(page, locator, pointer);
+              step.actionAt = new Date().toISOString();
+              if (d.action === "click") await locator.click(run.recordVideo ? { delay: 180 } : {});
               if (d.action === "activate") {
                 if (target.role !== "button" && target.tag !== "button")
                   throw Error("Accessibility activation requires a button");
@@ -277,7 +283,13 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
                   await (await chooserPromise).setFiles(fixture);
                 }
               }
-              if (d.action === "fill") await locator.fill(d.value);
+              if (d.action === "fill") {
+                if (run.recordVideo && ["text", "search", "email", "url", "tel", "password", ""].includes(target.type || "")) {
+                  await locator.click({ delay: 180 });
+                  await locator.fill("");
+                  await locator.pressSequentially(d.value, { delay: 65 });
+                } else await locator.fill(d.value);
+              }
               if (d.action === "select") await locator.selectOption(d.value);
               if (d.action === "press") {
                 const focused = await page.evaluate(() => {

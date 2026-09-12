@@ -96,4 +96,4 @@ The dashboard can optionally record each browser session as a continuous WebM vi
 
 Install the recorder once with `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers npx playwright install ffmpeg`, set `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers` in `.env`, and restart Ghost. Enable the recording checkbox before starting a run. Completed agent cards link to the original video.
 
-The public showcase includes a 59-second continuous recording at 3× speed and all three original recordings from run `310463c3-c942-41ea-a921-5a58fbe63bab`. It is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.
+Recording mode shows a pointer driven by real mouse events, click rings, and gradual typing. The public demo keeps actions at normal speed and shortens reasoning pauses; the uncut recordings are linked separately. This is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.

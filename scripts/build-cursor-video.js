@@ -1,0 +1,32 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const id=process.argv[2];
+if(!/^[a-f0-9-]{36}$/.test(id||'')) throw Error('Supply completed run ID');
+const run=JSON.parse(fs.readFileSync(`runs/${id}/run.json`,'utf8'));
+if(run.status!=='completed') throw Error('Run must finish first');
+const out='docs/site',work='work/cursor-video',font='/System/Library/Fonts/Supplemental/Arial.ttf';
+fs.mkdirSync(work,{recursive:true});fs.mkdirSync(`${out}/recordings`,{recursive:true});
+for(const g of run.ghosts) fs.copyFileSync(`runs/${id}/${g.id}/browser.webm`,`${out}/recordings/${g.id}.webm`);
+const ghost=run.ghosts[0],zero=Date.parse(ghost.videoStartedAt),clips=[];
+const sec=at=>(Date.parse(at)-zero)/1000;
+let previousEnd=0;
+for(let i=0;i<ghost.steps.length-1;i++) {
+ const s=ghost.steps[i],next=ghost.steps[i+1];
+ if(!s.actionAt||s.outcome!=='executed')continue;
+ const start=Math.max(previousEnd,sec(s.actionAt)-1.6),end=sec(next.at)+2;
+ if(end<=start)continue;
+ previousEnd=end;
+ const label=s.action.label||s.action.value||s.action.action;
+ const caption=s.action.label==='Help'?'Ghost opens Help. The 404 is an intentional demo defect.':`Mira: ${s.action.action} ${label}`;
+ const txt=`${work}/${i}.txt`;fs.writeFileSync(txt,caption.replace(/[^\x20-\x7E]/g,''));
+ const vf=`scale=1280:800,pad=1280:940:0:100:color=0x0b1411,drawtext=fontfile=${font}:text='GHOST / ACTUAL CURSOR AND CLICK EVENTS':x=30:y=20:fontsize=25:fontcolor=white,drawtext=fontfile=${font}:textfile=${txt}:x=30:y=52:fontsize=21:fontcolor=0xcbf78b,drawtext=fontfile=${font}:text='Actions at 1x speed | Reasoning pauses shortened | Planted-bug demo':x=30:y=910:fontsize=18:fontcolor=0xb8c5bc`;
+ const clip=`${work}/${i}.mp4`;execFileSync('ffmpeg',['-y','-ss',String(start),'-i',`${out}/recordings/ghost-1.webm`,'-t',String(end-start),'-vf',vf,'-an','-c:v','libx264','-profile:v','baseline','-level','3.1','-pix_fmt','yuv420p','-r','25','-crf','21',clip],{stdio:'ignore'});clips.push(`file '${i}.mp4'`);
+}
+fs.writeFileSync(`${work}/list.txt`,clips.join('\n'));
+execFileSync('ffmpeg',['-y','-f','concat','-safe','0','-i',`${work}/list.txt`,'-c','copy','-movflags','+faststart',`${out}/cursor-demo.mp4`],{stdio:'ignore'});
+execFileSync('ffmpeg',['-y','-i',`${out}/cursor-demo.mp4`,'-c:v','libvpx-vp9','-crf','33','-b:v','0',`${out}/cursor-demo.webm`],{stdio:'ignore'});
+execFileSync('ffmpeg',['-y','-ss','2','-i',`${out}/cursor-demo.mp4`,'-frames:v','1',`${out}/cursor-poster.jpg`],{stdio:'ignore'});
+for(const name of ['ghost-demo.mp4','ghost-demo-compatible.mp4'])fs.copyFileSync(`${out}/cursor-demo.mp4`,`${out}/${name}`);
+fs.copyFileSync(`${out}/cursor-demo.webm`,`${out}/ghost-demo.webm`);
+fs.copyFileSync(`${out}/cursor-demo.mp4`,'docs/assets/ghost-demo.mp4');
+console.log('Cursor demo exported from actual action timestamps.');
