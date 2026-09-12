@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Waypoint — make room for the weekend</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f5f6f8;
+        color: #192b38;
+        font: 17px/1.6 system-ui;
+      }
+      header {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 20px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav {
+        display: flex;
+        gap: 22px;
+      }
+      a {
+        color: inherit;
+      }
+      main {
+        max-width: 1050px;
+        margin: 55px auto;
+        padding: 0 25px;
+      }
+      h1 {
+        font-size: 52px;
+        line-height: 1.1;
+        max-width: 620px;
+        letter-spacing: -2px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+      small {
+        color: #4c6171;
+      }
+      .pill {
+        padding: 6px 10px;
+        background: #dcedcf;
+        border-radius: 30px;
+        font-size: 13px;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .card {
+        background: white;
+        border: 1px solid #d9dfe4;
+        padding: 25px;
+        border-radius: 18px;
+      }
+      button {
+        padding: 13px 18px;
+        background: #203f30;
+        color: #fff;
+        border: 0;
+        border-radius: 9px;
+        cursor: pointer;
+        font: inherit;
+      }
+      input {
+        display: block;
+        padding: 12px;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+        font: inherit;
+        margin: 6px 0 20px;
+        width: 100%;
+      }
+      .art {
+        font-size: 65px;
+        padding: 16px;
+        background: #e4ebdd;
+        border-radius: 12px;
+        text-align: center;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      #feedback {
+        padding: 12px 0;
+        color: #a72f2f;
+      }
+      footer {
+        padding: 25px 6%;
+        color: #536779;
+      }
+      .wide {
+        min-width: 620px;
+      }
+      table {
+        width: 100%;
+        text-align: left;
+        padding: 15px;
+      }
+      section[hidden] {
+        display: none;
+      }
+      @media (max-width: 650px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 38px;
+        }
+        nav {
+          gap: 12px;
+          font-size: 14px;
+        }
+        header {
+          padding: 16px;
+        }
+        main {
+          margin: 30px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>◒ Waypoint</strong>
+      <nav>
+        <a href="/">Discover</a><a href="/planner">My trips</a
+        ><a href="/help">Help</a>
+      </nav>
+    </header>
+    <main id="main"></main>
+    <footer>
+      Waypoint demo · Synthetic data only · No payments or real bookings
+    </footer>
+    <script>
+      const main = document.querySelector("#main");
+      const route = location.pathname;
+      if (route === "/planner")
+        main.innerHTML = `<small>YOUR NEXT CHAPTER</small><h1>A little planning.<br>A better weekend.</h1><div class="card"><h2>Start a trip</h2><label>Trip name<input id="name" placeholder="A weekend away"></label><button id="create">Create trip</button><div id="feedback" role="status"></div></div><h2>Your trips</h2><div id="trips"></div><div class="row"><button id="export">Export itinerary</button></div>`;
+      else if (route === "/compare")
+        main.innerHTML = `<small>FIND YOUR FIT</small><h1>Compare your escapes.</h1><div class="card wide"><table><tr><th>Destination</th><th>Travel time</th><th>Best for</th><th>From</th></tr><tr><td>Cedar cabin</td><td>2 hours</td><td>Quiet mornings</td><td>$120</td></tr><tr><td>Coastal hideaway</td><td>3 hours</td><td>Sea air</td><td>$180</td></tr></table></div><p><a href="/planner">Plan a trip</a></p>`;
+      else
+        main.innerHTML = `<span class="pill">LESS PLANNING. MORE LIVING.</span><h1>Your next weekend<br>starts somewhere new.</h1><p>Small escapes, a little closer to home. Find a place and make it yours.</p><div class="row"><a href="/planner">Plan your weekend →</a><a href="/compare">Compare escapes</a></div><h2>Find your kind of away</h2><label>Search destinations<input id="search" placeholder="Try mountains or coast"></label><div class="cards" id="results"><article class="card"><div class="art">↟</div><h2>Cedar cabin</h2><p>A quiet mountain retreat.</p><a href="/planner">Plan this escape</a></article><article class="card"><div class="art">≈</div><h2>Coastal hideaway</h2><p>Slow days by the sea.</p><a href="/planner">Plan a coastal trip</a></article><article class="card"><div class="art">◇</div><h2>City nook</h2><p>Take the long way home.</p><a href="/compare">See the details</a></article></div>`;
+      document.querySelector("#create")?.addEventListener("click", () => {
+        const name = document.querySelector("#name").value;
+        if (!name.trim()) {
+          document.querySelector("#feedback").textContent =
+            "Add a name for your trip.";
+          return;
+        }
+        throw new Error("Trip creation failed: itinerary is undefined");
+      });
+      document.querySelector("#export")?.addEventListener("click", async () => {
+        const r = await fetch("/api/export");
+        const d = await r.json();
+        document.querySelector("#feedback").textContent = d.error;
+      });
+      document.querySelector("#search")?.addEventListener("input", () => {
+        document.querySelector("#results").style.opacity = ".65";
+      });
+    </script>
+  </body>
+</html>

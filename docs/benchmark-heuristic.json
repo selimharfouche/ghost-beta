@@ -1,0 +1,58 @@
+{
+  "runId": "c5c8042b-ce9c-408c-aa81-d7f77b5fb983",
+  "mode": "heuristic",
+  "status": "completed",
+  "completedGhosts": 3,
+  "planted": 5,
+  "detected": 4,
+  "results": [
+    {
+      "id": "trip-crash",
+      "label": "Trip creation throws",
+      "detected": true
+    },
+    {
+      "id": "export-500",
+      "label": "Export returns HTTP 500",
+      "detected": true
+    },
+    {
+      "id": "help-404",
+      "label": "Help returns 404",
+      "detected": true
+    },
+    {
+      "id": "mobile-overflow",
+      "label": "Comparison overflows mobile",
+      "detected": true
+    },
+    {
+      "id": "search-no-effect",
+      "label": "Search does not filter",
+      "detected": false
+    }
+  ],
+  "issues": [
+    {
+      "title": "Failed HTTP response",
+      "actual": "HTTP 404 at http://127.0.0.1:4319/help",
+      "source": "browser"
+    },
+    {
+      "title": "Uncaught application error",
+      "actual": "Trip creation failed: itinerary is undefined",
+      "source": "browser"
+    },
+    {
+      "title": "Failed HTTP response",
+      "actual": "HTTP 500 at http://127.0.0.1:4319/api/export",
+      "source": "browser"
+    },
+    {
+      "title": "Content overflows the viewport",
+      "actual": "Document wider than 390px viewport.",
+      "source": "browser"
+    }
+  ],
+  "note": "Heuristic mode verifies instrumentation, not Astra quality. String matching is a benchmark aid; human review is required for precision."
+}

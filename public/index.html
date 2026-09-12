@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ghost — autonomous beta lab</title>
+    <meta
+      name="description"
+      content="Independent AI beta testers. Real browser journeys. Evidence you can replay."
+    />
+    <link rel="icon" href="/logo.svg" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside>
+      <a class="brand" href="/"
+        ><img src="/logo.svg" alt="" width="34" height="34" />ghost<span
+          >beta lab</span
+        ></a
+      >
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="/">◉ &nbsp; Exploration lab</a
+      ><a class="nav" href="/about">◈ &nbsp; About Ghost</a>
+      <div class="side-label">RECENT SESSIONS</div>
+      <div id="sessions"></div>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span> Local workspace<br /><small
+          >Your browser. Your Codex account.</small
+        >
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div class="breadcrumb">Workspace <span>/</span> Exploration lab</div>
+        <span class="badge">GPT-6 ASTRA · CODEX SDK</span>
+      </header>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">MEET YOUR FIRST USERS</div>
+          <h1>Find the surprises.<br /><span>Before your users do.</span></h1>
+          <p>
+            Send independent Ghosts into your staging app.<br />Get the
+            journeys, friction, and evidence they bring back.
+          </p>
+        </div>
+        <div class="intro-note">
+          <span>01 / EXPLORE</span
+          ><strong>No test scripts.<br />No familiar paths.</strong
+          ><small>Fresh eyes, in real browsers.</small>
+        </div>
+      </section>
+      <form id="launch" class="launch">
+        <label class="url-label"
+          >STAGING URL<input
+            id="url"
+            type="url"
+            placeholder="https://staging.your-app.com"
+            required
+        /></label>
+        <div class="controls">
+          <label
+            >Explorers<select id="count">
+              <option value="3">3 Ghosts</option>
+              <option value="2">2 Ghosts</option>
+              <option value="1">1 Ghost</option>
+            </select></label
+          ><label
+            >Step limit<select id="steps">
+              <option value="12">12 steps each</option>
+              <option value="6">6 steps each</option>
+              <option value="20">20 steps each</option>
+            </select></label
+          ><label
+            >Mode<select id="mode">
+              <option value="codex">Astra · Codex login</option>
+              <option value="heuristic">Runner check · no AI</option>
+            </select></label
+          ><button class="primary" id="start">Release Ghosts ↗</button>
+        </div>
+        <div class="form-foot">
+          <button type="button" id="demo" class="text-button">
+            Use planted-bug demo</button
+          ><span id="connection">Checking Codex…</span>
+        </div>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+      <section id="workspace" hidden>
+        <div class="section-title">
+          <div>
+            <span class="eyebrow" id="run-label">EXPLORATION SESSION</span>
+            <h2 id="run-title">Ghosts at work</h2>
+          </div>
+          <div class="actions">
+            <span id="run-status" class="badge"></span
+            ><button id="cancel" class="secondary">Stop session</button
+            ><a id="download" class="secondary">Export report ↓</a>
+          </div>
+        </div>
+        <div id="metrics" class="metrics"></div>
+        <div id="ghosts" class="ghost-grid"></div>
+        <div class="section-title">
+          <h2>What they found <span id="issue-count"></span></h2>
+          <select id="filter" aria-label="Filter findings">
+            <option value="all">All severities</option>
+            <option value="high">High severity</option>
+            <option value="medium">Medium severity</option>
+            <option value="low">Low severity</option>
+          </select>
+        </div>
+        <div id="findings"></div>
+      </section>
+      <section id="empty" class="empty">
+        <div class="section-title">
+          <h2>Three perspectives. One clearer picture.</h2>
+          <span class="muted">Independent sessions</span>
+        </div>
+        <div id="personas" class="ghost-grid"></div>
+        <p class="disclosure">
+          Use a staging environment you own, with synthetic data. Ghost records
+          screenshots and sends page observations to Codex. External requests
+          are blocked; some integrations may appear unavailable.
+        </p>
+      </section>
+    </main>
+    <dialog id="replay">
+      <div class="section-title">
+        <h2 id="replay-title">Journey replay</h2>
+        <button id="close-replay" class="secondary">Close ✕</button>
+      </div>
+      <img id="frame" alt="Recorded browser observation" />
+      <div class="replay-controls">
+        <button id="prev" class="secondary">←</button
+        ><button id="play" class="secondary">Play</button
+        ><input
+          id="scrubber"
+          type="range"
+          min="0"
+          max="0"
+          value="0"
+          aria-label="Replay step"
+        /><button id="next" class="secondary">→</button
+        ><span id="frame-number"></span>
+      </div>
+      <div id="frame-caption"></div>
+    </dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
