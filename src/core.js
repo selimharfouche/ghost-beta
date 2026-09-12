@@ -38,6 +38,10 @@ export const decisionSchema = {
       type: "string",
       enum: [
         "click",
+        "doubleclick",
+        "activate",
+        "hover",
+        "upload",
         "fill",
         "select",
         "press",
@@ -117,7 +121,18 @@ export function validateUrl(raw) {
   return u;
 }
 export function safeAction(d, target) {
-  if (["click", "fill", "select"].includes(d.action) && !target)
+  if (
+    [
+      "click",
+      "activate",
+      "doubleclick",
+      "hover",
+      "upload",
+      "fill",
+      "select",
+    ].includes(d.action) &&
+    !target
+  )
     throw Error("Target no longer exists");
   if (
     target &&
@@ -127,12 +142,14 @@ export function safeAction(d, target) {
   )
     throw Error("Sensitive field: manual testing required");
   if (
-    d.action === "click" &&
+    ["click", "activate", "doubleclick", "upload"].includes(d.action) &&
     /\b(delete|remove account|purchase|pay now|place order|subscribe|send|invite|publish|accept|agree|sign in|log in|login|sign up|register)\b/i.test(
       target?.label || "",
     )
   )
     throw Error("Consequential action requires a human");
+  if (d.action === "upload" && d.value !== "sample-video")
+    throw Error("Only the bundled synthetic sample-video fixture is allowed");
   if (
     d.action === "press" &&
     !["Tab", "Enter", "Escape", "ArrowDown", "ArrowUp", "Space"].includes(

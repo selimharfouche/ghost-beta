@@ -21,3 +21,12 @@ No API charges, paid hosting, domain, subscription purchase or other external sp
 ## Final grouping
 
 Astra reduced 22 overlapping reports to nine grouped issues. All 32 original occurrences were retained, including each source, reproduction trail and screenshot reference. Ten tests validate evidence coverage and other core behavior. The demo used roughly 4.56 million SDK-reported input/output tokens including grouping; most input is carried context, and the counter is not dollar spend. Further memory compaction is an optimization opportunity.
+
+## Release-candidate checks
+
+- Eleven tests pass after adding synthetic-upload and extended-action guards.
+- A clean directory installed the exact lockfile using the existing offline dependency cache; all eleven tests also passed against that installation. This checks reproducible dependencies on this Mac, not installation on a second machine.
+- Each decision now uses a fresh SDK context with recent textual observations and action history, preventing all prior screenshots from accumulating.
+- MarkerPad's live web beta completed a genuine twelve-action exploration (181,910 tokens). It created and edited a synthetic document and reached export options. Three accessibility candidates remain unconfirmed; see real-app-demo.md.
+- The interactive static report was opened in the browser and a finding correctly selected Sana and step 6 (frame 7 of 13).
+- Gallery images, a 240px thumbnail, and a captioned MP4 were prepared. The video explicitly identifies screenshot replay and time compression.

@@ -26,8 +26,9 @@ The public contest page renders a zero countdown inconsistent with the future la
 - [x] Local dashboard and planted-bug app implemented.
 - [x] Real Chromium benchmark completes outside the task’s macOS sandbox.
 - [x] Actual Astra benchmark completes and planted findings are checked against evidence.
-- [ ] Capture gallery screenshots and short video from that genuine run.
-- [ ] Public source/download link available, install instructions verified on a fresh machine.
+- [x] Capture gallery screenshots and captioned screenshot-replay video from genuine runs.
+- [x] Clean dependency install and tests verified in a separate directory on this Mac.
+- [ ] Public source/download link available; verify on a second machine after publication.
 - [ ] Maker account and name supplied; final launch fields reviewed.
 - [ ] Confirm contest terms and SDK usage eligibility in account flow.
 - [ ] Schedule September 18 via contest link; verify scheduled-state confirmation.

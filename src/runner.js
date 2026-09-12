@@ -1,6 +1,7 @@
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   PERSONAS,
   cleanUrl,
@@ -13,15 +14,18 @@ import { triage } from "./triage.js";
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 export async function observe(page, step) {
   return page.evaluate((step) => {
+    for (const e of document.querySelectorAll("[data-ghost-id]"))
+      e.removeAttribute("data-ghost-id");
     const controls = [
       ...document.querySelectorAll(
-        'a,button,input,textarea,select,[role="button"]',
+        'a,button,input,textarea,select,[role="button"],[role="tab"],[role="menuitem"],[role="checkbox"],[contenteditable="true"]',
       ),
     ]
       .filter(
         (e) =>
-          e.getClientRects().length &&
-          getComputedStyle(e).visibility !== "hidden",
+          (e.getClientRects().length &&
+            getComputedStyle(e).visibility !== "hidden") ||
+          e.type === "file",
       )
       .slice(0, 80)
       .map((e, i) => {
@@ -30,6 +34,7 @@ export async function observe(page, step) {
           e.getAttribute("aria-label") ||
           e.labels?.[0]?.innerText ||
           e.innerText ||
+          e.getAttribute("title") ||
           e.getAttribute("placeholder") ||
           e.getAttribute("name") ||
           ""
@@ -40,6 +45,10 @@ export async function observe(page, step) {
           id: i + 1,
           tag: e.tagName.toLowerCase(),
           type: e.getAttribute("type") || "",
+          role: e.getAttribute("role") || "",
+          value: /password|email/i.test(e.type)
+            ? "[masked]"
+            : (e.value || "").slice(0, 200),
           label,
           disabled: !!e.disabled,
           options:
@@ -80,6 +89,7 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           acceptDownloads: false,
         });
         const origin = new URL(run.url).origin;
+        const blockedOrigins = new Set();
         await ctx.route("**/*", (route) => {
           let u;
           try {
@@ -87,11 +97,14 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           } catch {
             return route.abort();
           }
-          return u.origin === origin ? route.continue() : route.abort();
+          if (u.origin === origin || ["blob:", "data:"].includes(u.protocol))
+            return route.continue();
+          blockedOrigins.add(u.origin);
+          return route.abort();
         });
         const page = await ctx.newPage();
         page.setDefaultTimeout(5000);
-        page.setDefaultNavigationTimeout(15000);
+        page.setDefaultNavigationTimeout(45000);
         ctx.on("page", (p) => {
           if (p !== page) p.close().catch(() => {});
         });
@@ -122,6 +135,11 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
             if (signal.aborted) throw Error("Cancelled by user");
             await delay(250);
             const obs = await observe(page, i);
+            obs.environment = {
+              externalRequestsBlocked: [...blockedOrigins],
+              syntheticFixtures: ["sample-video"],
+            };
+            ghost.environment = obs.environment;
             const file = `${i.toString().padStart(3, "0")}.jpg`;
             const screenshot = path.join(dir, file);
             await page.screenshot({
@@ -235,6 +253,27 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
               safeAction(d, target);
               const locator = page.locator(`[data-ghost-id="${d.target}"]`);
               if (d.action === "click") await locator.click();
+              if (d.action === "activate") {
+                if (target.role !== "button" && target.tag !== "button")
+                  throw Error("Accessibility activation requires a button");
+                await locator.dispatchEvent("click");
+              }
+              if (d.action === "doubleclick") await locator.dblclick();
+              if (d.action === "hover") await locator.hover();
+              if (d.action === "upload") {
+                const fixture = fileURLToPath(
+                  new URL("../fixtures/sample-video.mp4", import.meta.url),
+                );
+                if (target.type === "file")
+                  await locator.setInputFiles(fixture);
+                else {
+                  const chooserPromise = page.waitForEvent("filechooser", {
+                    timeout: 5000,
+                  });
+                  await locator.click();
+                  await (await chooserPromise).setFiles(fixture);
+                }
+              }
               if (d.action === "fill") await locator.fill(d.value);
               if (d.action === "select") await locator.selectOption(d.value);
               if (d.action === "press") {
@@ -269,6 +308,8 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
               outcome: step.outcome,
               signature,
               journey: d.journey,
+              observedText: obs.text.slice(0, 2000),
+              signals: step.signals,
             });
             run.issues = cluster(run.ghosts.flatMap((g) => g.findings));
             save();

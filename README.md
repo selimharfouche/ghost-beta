@@ -81,3 +81,11 @@ One active run at a time, maximum three explorers and thirty actions each. No ba
 ## Launch
 
 Read docs/launch-checklist.md, docs/launch-copy.md, docs/demo-flow.md, docs/assets-spec.md and docs/deployment.md. The organizer guide specifies September 18, 2026 at 12:01 AM Pacific for the launch. The separate scheduling cutoff, terms and SDK-only eligibility still need verification in the authenticated contest flow. No submission or account action has been performed.
+
+## Review without running an agent
+
+Open `http://127.0.0.1:4318/showcase/` while Ghost is running, or serve `docs/site` with a static web server. The recorded report needs no login and makes no model calls. It preserves the original observations and lets viewers select a finding and jump to its screenshot.
+
+The captioned MP4 is `docs/assets/ghost-demo.mp4`. It is an edited screenshot replay, not a live screen recording. Publication steps are in `docs/publish-handoff.md`.
+
+Recent runner additions include synthetic video uploads (`fixtures/sample-video.mp4` only), hover, double-click and explicitly logged accessibility-button activation. Each Astra decision starts with bounded recent observations rather than retaining every prior screenshot. Complex canvas interfaces can still limit coverage; see `docs/real-app-demo.md`.

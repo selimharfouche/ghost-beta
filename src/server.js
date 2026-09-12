@@ -17,7 +17,9 @@ const runs = new Map();
 const controllers = new Map();
 for (const id of fs.readdirSync(root)) {
   try {
-    const r = JSON.parse(fs.readFileSync(path.join(root, id, "run.json")));
+    const r = JSON.parse(
+      fs.readFileSync(path.join(root, id, "run.json"), "utf8"),
+    );
     if (r.status === "running") {
       r.status = "interrupted";
       r.error = "Server restarted; start a new run.";
@@ -200,6 +202,19 @@ const server = http.createServer(async (req, res) => {
         return json(res, 404, { error: "Not found" });
       return file(res, path.join(root, ...parts.slice(1)));
     }
+    if (u.pathname.startsWith("/showcase/")) {
+      const relative =
+        decodeURIComponent(u.pathname.slice("/showcase/".length)) ||
+        "index.html";
+      const showcaseRoot = path.join(base, "docs", "site");
+      const target = path.resolve(showcaseRoot, relative);
+      if (
+        !target.startsWith(showcaseRoot + path.sep) ||
+        !/\.(html|css|svg|jpg|png|mp4)$/.test(target)
+      )
+        return json(res, 404, { error: "Not found" });
+      return file(res, target);
+    }
     const publicFiles = {
       "/": "index.html",
       "/app.js": "app.js",
@@ -228,6 +243,17 @@ const demo = http.createServer((req, res) => {
   }
   file(res, path.join(base, "public", "demo.html"));
 });
+for (const service of [server, demo])
+  service.on("error", (error) => {
+    console.error(
+      error.code === "EADDRINUSE"
+        ? "Ghost port already in use. Open the running dashboard at http://127.0.0.1:" +
+            port +
+            " or choose PORT and DEMO_PORT in .env."
+        : error.message,
+    );
+    shutdown();
+  });
 server.listen(port, host, () => console.log(`Ghost: http://${host}:${port}`));
 demo.listen(demoPort, host, () =>
   console.log(`Demo: http://${host}:${demoPort}`),

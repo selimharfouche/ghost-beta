@@ -22,3 +22,9 @@ The launcher uses Google Chrome by default. Configuration examples are in .env.e
 ## If a hosted product is wanted later
 
 That is a separate architecture decision: authenticated users, isolated browser workers, an egress policy with DNS/IP enforcement, per-tenant evidence storage, billing control and a supported model authentication route. Do not deploy the owner’s subscription credentials to a shared service. This is outside the contest MVP and would require account/payment approval where applicable.
+
+## Prepared static showcase
+
+`docs/site` contains a self-contained landing page and actual recorded evidence. Serve it with any static host. The optional, manually triggered `docs/deploy/pages.yml` is a GitHub Pages template, not an active workflow. GitHub Pages supports public repositories on GitHub Free: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages.
+
+The proposed public source license is MIT; review `LICENSE` before approving publication. Evidence in the showcase is limited to synthetic/demo material. Raw SDK state and the local OpenCut clone are excluded.

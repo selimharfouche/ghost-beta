@@ -48,3 +48,21 @@ test("untrusted model response is validated before execution", () => {
     validateDecision({ action: "click", target: "selector", value: "x" }),
   );
 });
+
+test("upload is restricted to synthetic fixture and consequential doubleclick is blocked", () => {
+  assert.doesNotThrow(() =>
+    safeAction(
+      { action: "upload", value: "sample-video" },
+      { type: "file", label: "Import media" },
+    ),
+  );
+  assert.throws(() =>
+    safeAction(
+      { action: "upload", value: "/Users/private.mov" },
+      { type: "file", label: "Import media" },
+    ),
+  );
+  assert.throws(() =>
+    safeAction({ action: "doubleclick" }, { type: "button", label: "Publish" }),
+  );
+});
