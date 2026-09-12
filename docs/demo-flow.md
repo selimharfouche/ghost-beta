@@ -4,7 +4,7 @@ The main video shows MarkerPad, an independently operated browser document edito
 
 End with a brief card: **Built by Selim Harfouche using GPT-6 Astra.** Website credits remain visible independently.
 
-The checklist accessibility finding has a separate independent reproduction report in `markerpad-bug-report.md`. A future bug-focused cut should show the actual discovery and independent verification, with submission status stated accurately. Do not imply that the current exploration video includes maintainer confirmation.
+The checklist accessibility finding has a separate independent reproduction report in the local review shortlist. A future bug-focused cut should show the actual discovery and independent verification, with submission status stated accurately. Do not imply that the current exploration video includes maintainer confirmation.
 
 ## Benchmark protocol
 

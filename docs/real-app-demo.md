@@ -24,4 +24,4 @@ Usage: 180,790 input + 1,120 output = 181,910 subscription tokens. This is not a
 
 ## Current main recording and verification
 
-The main recorded run is `5ca3d8ea-f00a-4e7e-88d8-867ffd48961d`: twelve decisions, thirteen observations, a full Markdown note and export-menu exploration. `scripts/build-real-video.js` builds the captioned highlights. The checkbox naming finding was independently reproduced on September 12 in a normal browser, including after reload and state toggle; see `markerpad-bug-report.md`. Historical confidence notes above describe the state at the time of those runs. Maintainer delivery is tracked in the bug report.
+The main recorded run is `5ca3d8ea-f00a-4e7e-88d8-867ffd48961d`: twelve decisions, thirteen observations, a full Markdown note and export-menu exploration. `scripts/build-real-video.js` builds the captioned highlights. The checkbox naming finding was independently reproduced on September 12 in a normal browser, including after reload and state toggle; see the local review shortlist. Historical confidence notes above describe the state at the time of those runs. Maintainer delivery is tracked in the bug report.

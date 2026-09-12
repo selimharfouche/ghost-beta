@@ -20,7 +20,7 @@ Give Ghost a staging URL. A curious newcomer, an impatient visitor, and a mobile
 
 GPT-6 Astra makes the exploration decisions through the Codex SDK. Playwright carries them out and captures browser evidence. Ghost runs locally using your own Codex login and subscription allowance, with no separate API key.
 
-In the real-app demo, Astra created and formatted a document in MarkerPad, then flagged unnamed checklist controls. A separate browser reproduction found the same unnamed checkboxes after reload. The discovery record and reproduction are public; maintainer confirmation is pending.
+In the real-app demo, Astra created and formatted a document in MarkerPad, then flagged unnamed checklist controls. A separate browser reproduction found the same unnamed checkboxes after reload. Findings are held for maker review before any combined report is published.
 
 In our planted-bug demo, all three explorers completed their runs. Browser signals and Astra observations together surfaced all five intentional defects. That is one controlled demo, not a general accuracy claim. The recorded report is open for inspection, including suspected friction and repeated observations.
 

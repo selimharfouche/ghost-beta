@@ -100,7 +100,7 @@ Recording mode shows a pointer driven by real mouse events, preserves its positi
 
 ### Real-app walkthrough
 
-The [public showcase](https://selimharfouche.github.io/ghost-beta/) now leads with a real MarkerPad exploration: document creation, full Markdown entry, formatted preview, and the export flow. The video includes a cursor, click indicators, close-ups, and plain-language captions. Inspect the complete recording and report beside it. Export completion is not claimed, and the checklist accessibility candidate has now been independently reproduced in a normal browser; see [the detailed report](docs/markerpad-bug-report.md). Maintainer confirmation is pending. The planted-bug benchmark is presented separately.
+The [public showcase](https://selimharfouche.github.io/ghost-beta/) now leads with a real MarkerPad exploration: document creation, full Markdown entry, formatted preview, and the export flow. The video includes a cursor, click indicators, close-ups, and plain-language captions. Inspect the complete recording and report beside it. Export completion is not claimed, and findings are being reviewed locally before a combined report is approved. The planted-bug benchmark is presented separately.
 
 ## Project review
 

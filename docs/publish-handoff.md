@@ -8,7 +8,7 @@ The public release is a local developer tool plus a static interactive showcase 
 - Video: docs/site/launch-demo.mp4 and launch-demo.webm; edited real-browser MarkerPad highlights with closing maker credit. docs/assets/ghost-demo.mp4 is the launch asset copy.
 - Gallery: docs/assets/completed-report.png, live-exploration.png, mobile-evidence.png (controlled demo dashboard captures).
 - Listing/maker comment: docs/launch-copy.md.
-- Real-app finding: docs/markerpad-bug-report.md.
+- Real-app finding: the local review shortlist.
 - Remaining product gaps: docs/project-review.md.
 
 ## Remaining launch gates
