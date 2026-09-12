@@ -44,6 +44,8 @@ const types = {
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".md": "text/markdown",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
 };
 function file(res, p) {
   if (!fs.existsSync(p) || !fs.statSync(p).isFile())
@@ -145,6 +147,7 @@ const server = http.createServer(async (req, res) => {
         status: "running",
         createdAt: new Date().toISOString(),
         maxSteps,
+        recordVideo: b.recordVideo === true,
         issues: [],
         ghosts: PERSONAS.slice(0, count).map((p, i) => ({
           id: `ghost-${i + 1}`,
@@ -197,7 +200,7 @@ const server = http.createServer(async (req, res) => {
         parts.length !== 4 ||
         !/^[a-f0-9-]{36}$/.test(parts[1]) ||
         !/^ghost-[1-3]$/.test(parts[2]) ||
-        !/^\d{3}\.jpg$/.test(parts[3])
+        !/^(\d{3}\.jpg|browser\.webm)$/.test(parts[3])
       )
         return json(res, 404, { error: "Not found" });
       return file(res, path.join(root, ...parts.slice(1)));
@@ -210,7 +213,7 @@ const server = http.createServer(async (req, res) => {
       const target = path.resolve(showcaseRoot, relative);
       if (
         !target.startsWith(showcaseRoot + path.sep) ||
-        !/\.(html|css|svg|jpg|png|mp4)$/.test(target)
+        !/\.(html|css|svg|jpg|png|mp4|webm|js|vtt)$/.test(target)
       )
         return json(res, 404, { error: "Not found" });
       return file(res, target);

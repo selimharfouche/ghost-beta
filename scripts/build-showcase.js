@@ -52,18 +52,6 @@ for (const id of ids) {
     id,
   });
 }
-let landing = await fs.readFile("public/landing.html", "utf8");
-landing = landing
-  .replaceAll('href="/style.css"', 'href="style.css"')
-  .replaceAll('href="/logo.svg"', 'href="logo.svg"')
-  .replaceAll('src="/logo.svg"', 'src="logo.svg"')
-  .replaceAll('href="/"', 'href="https://github.com/selimharfouche/ghost-beta"')
-  .replace("Open the beta lab ↗", "Get Ghost ↗")
-  .replace("Try the planted-bug demo ↗", "Install Ghost ↗");
-landing = landing.replace(
-  '<section class="line">',
-  `<section class="line"><h2>Watch Ghost explore.</h2><video controls preload="metadata" style="width:100%;max-width:1000px;border-radius:16px" src="ghost-demo.mp4" aria-label="Captioned Ghost demo video"></video><h2>Explore a real recorded run.</h2><p>No login, API key, or installation needed to inspect the evidence.</p>${entries.map((e) => '<p><a class="secondary" href="' + e.file + '">' + e.label + " ↗</a></p>").join("")}<p class="muted">The benchmark uses intentional defects in our demo app. Third-party explorations are separate and may expose coverage limits; they do not establish a bug-detection success rate.</p></section><section class="line">`,
-);
-await fs.writeFile(root + "/index.html", landing);
+await fs.copyFile("public/showcase.html", root + "/index.html");
 await fs.writeFile(root + "/.nojekyll", "");
 console.log("Static showcase built:", entries.map((e) => e.file).join(", "));

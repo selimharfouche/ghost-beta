@@ -87,6 +87,7 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           viewport: { width: persona.width, height: persona.height },
           serviceWorkers: "block",
           acceptDownloads: false,
+          recordVideo: run.recordVideo ? { dir: path.join(dir, "video"), size: { width: persona.width, height: persona.height } } : undefined,
         });
         const origin = new URL(run.url).origin;
         const blockedOrigins = new Set();
@@ -102,7 +103,9 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           blockedOrigins.add(u.origin);
           return route.abort();
         });
+        ghost.videoStartedAt = run.recordVideo ? new Date().toISOString() : undefined;
         const page = await ctx.newPage();
+        const recording = run.recordVideo ? page.video() : null;
         page.setDefaultTimeout(5000);
         page.setDefaultNavigationTimeout(45000);
         ctx.on("page", (p) => {
@@ -320,6 +323,12 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           ghost.error = e.message.slice(0, 500);
         } finally {
           await ctx.close();
+          if (recording) {
+            try {
+              await recording.saveAs(path.join(dir, "browser.webm"));
+              ghost.video = `/artifacts/${run.id}/${ghost.id}/browser.webm`;
+            } catch (e) { ghost.videoError = e.message.slice(0, 200); }
+          }
           run.issues = cluster(run.ghosts.flatMap((g) => g.findings));
           save();
         }

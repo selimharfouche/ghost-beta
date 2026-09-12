@@ -84,7 +84,7 @@ function render() {
   $("#ghosts").innerHTML = run.ghosts
     .map((g) => {
       const s = g.steps.at(-1);
-      return `<article class="ghost-card"><div class="ghost-head"><div class="avatar">${esc(g.name[0])}</div><div><strong>${esc(g.name)}</strong><small>${esc(g.label)}</small></div></div>${s ? `<img class="shot" src="${s.screenshot}" alt="Latest observation from ${esc(g.name)}"><p class="ghost-thought">${esc(s.thought)}</p>` : `<p>${g.status === "queued" ? "Waiting to explore." : g.status === "running" ? "Opening a fresh browser session…" : "No browser observations recorded."}</p>`}<div class="ghost-state"><span>${esc(g.status)}</span><span>${g.steps.filter((s) => s.action).length} / ${run.maxSteps} steps</span></div>${g.error ? `<p class="error">${esc(g.error)}</p>` : ""}<button class="secondary" data-replay="${g.id}" ${g.steps.length ? "" : "disabled"}>Replay journey ▷</button></article>`;
+      return `<article class="ghost-card"><div class="ghost-head"><div class="avatar">${esc(g.name[0])}</div><div><strong>${esc(g.name)}</strong><small>${esc(g.label)}</small></div></div>${s ? `<img class="shot" src="${s.screenshot}" alt="Latest observation from ${esc(g.name)}"><p class="ghost-thought">${esc(s.thought)}</p>` : `<p>${g.status === "queued" ? "Waiting to explore." : g.status === "running" ? "Opening a fresh browser session…" : "No browser observations recorded."}</p>`}<div class="ghost-state"><span>${esc(g.status)}</span><span>${g.steps.filter((s) => s.action).length} / ${run.maxSteps} steps</span></div>${g.error ? `<p class="error">${esc(g.error)}</p>` : ""}<button class="secondary" data-replay="${g.id}" ${g.steps.length ? "" : "disabled"}>Replay journey ▷</button>${g.video ? `<a class="secondary" href="${g.video}" target="_blank" rel="noopener">Watch continuous recording ↗</a>` : ""}</article>`;
     })
     .join("");
   if (run.error) showError(Error(run.error));
@@ -180,6 +180,7 @@ $("#launch").onsubmit = async (e) => {
         mode: $("#mode").value,
         count: Number($("#count").value),
         maxSteps: Number($("#steps").value),
+        recordVideo: $("#record-video").checked,
       }),
     });
     currentId = run.id;

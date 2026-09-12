@@ -89,3 +89,11 @@ Open `http://127.0.0.1:4318/showcase/` while Ghost is running, or serve `docs/si
 The captioned MP4 is `docs/assets/ghost-demo.mp4`. It is an edited screenshot replay, not a live screen recording. Publication steps are in `docs/publish-handoff.md`.
 
 Recent runner additions include synthetic video uploads (`fixtures/sample-video.mp4` only), hover, double-click and explicitly logged accessibility-button activation. Each Astra decision starts with bounded recent observations rather than retaining every prior screenshot. Complex canvas interfaces can still limit coverage; see `docs/real-app-demo.md`.
+
+### Continuous browser recordings
+
+The dashboard can optionally record each browser session as a continuous WebM video. These videos are **unmasked**; use synthetic data. Screenshots and step-by-step evidence remain available independently.
+
+Install the recorder once with `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers npx playwright install ffmpeg`, set `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers` in `.env`, and restart Ghost. Enable the recording checkbox before starting a run. Completed agent cards link to the original video.
+
+The public showcase includes a 59-second continuous recording at 3× speed and all three original recordings from run `310463c3-c942-41ea-a921-5a58fbe63bab`. It is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.
