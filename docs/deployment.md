@@ -5,7 +5,7 @@
 Distribute Ghost as a local developer tool. Each developer runs Node + Chrome + Codex, using their own ChatGPT login. This preserves the requested subscription route. Do not host an unauthenticated public endpoint that runs commands against the maker’s Codex account.
 
 1. Complete the real-browser/Astra validation gates in launch-checklist.md.
-2. Create a public source repository under the maker’s account, or upload a release archive. The local Git repository is ready, and the owner’s existing GitHub login is available. A private repository is being prepared; public distribution is a separate release step.
+2. Create a public source repository under the maker’s account, or upload a release archive. The local Git repository is ready, and the owner’s existing GitHub login is available. Private repository: https://github.com/selimharfouche/ghost-beta. Public distribution is a separate release step.
 3. Exclude `.env`, runs, node_modules, local SDK session files, credentials and raw private screenshots. Review the staged file list before pushing.
 4. Set the Product Hunt website URL to a public readme/release or an independently hosted marketing page that links to the release. The local `/about` route contains finished landing-page copy.
 5. Test the install/download on a separate machine. Capture a real demo video and upload real product screenshots.

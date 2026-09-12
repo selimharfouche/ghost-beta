@@ -59,7 +59,7 @@ export function applyGroups(issues, groups) {
     );
 }
 export async function triage(run, root, signal) {
-  if (run.mode !== "codex" || run.issues.length < 2) return;
+  if (run.mode !== "codex" || run.issues.length < 2) { run.triage = {status: "skipped"}; return; }
   const dir = path.join(root, run.id, "triage");
   await fs.mkdir(dir, { recursive: true });
   const env = { ...process.env, CODEX_BINARY: codexBinary() };

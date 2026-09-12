@@ -16,7 +16,9 @@ Observed: No trip or feedback appeared after submission; revisiting My trips res
 
 URL: http://127.0.0.1:4319/planner
 
-### ghost-1
+### ghost-1 · browser
+
+Observed: Trip creation failed: itinerary is undefined
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -25,7 +27,9 @@ URL: http://127.0.0.1:4319/planner
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/003.jpg
 
-### ghost-2
+### ghost-2 · browser
+
+Observed: Trip creation failed: itinerary is undefined
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -35,7 +39,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/003.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/004.jpg
 
-### ghost-3
+### ghost-3 · browser
+
+Observed: Trip creation failed: itinerary is undefined
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -44,7 +50,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/004.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/003.jpg
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: After clicking Create trip, the name remains entered, Your trips remains empty, and no feedback appears.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -53,7 +61,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/003.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/003.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: After clicking Create trip, the name remains in the form, Your trips stays empty, and no success, error, or loading message appears.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -63,7 +73,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/003.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/004.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: After clicking Create trip, Your trips remains empty, the entered name remains in the form, and no confirmation or error appears.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -72,7 +84,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/004.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/003.jpg
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: Creating Cedar Weekend Test gave no feedback; opening My trips shows no trip and resets the name field.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -82,7 +96,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/003.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/004.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: My trips opens the same planner with an empty trip list and clears the entered name; the submitted trip is unavailable.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -93,7 +109,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/004.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/005.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: No trip or feedback appeared after submission; revisiting My trips reset the input and still showed an empty list.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -113,7 +131,9 @@ Observed: The Help link opens /help displaying Page not found and This help page
 
 URL: http://127.0.0.1:4319/help
 
-### ghost-1
+### ghost-1 · browser
+
+Observed: HTTP 404 at http://127.0.0.1:4319/help
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -128,7 +148,9 @@ URL: http://127.0.0.1:4319/help
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/009.jpg
 
-### ghost-2
+### ghost-2 · browser
+
+Observed: HTTP 404 at http://127.0.0.1:4319/help
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -140,7 +162,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/009.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/006.jpg
 
-### ghost-3
+### ghost-3 · browser
+
+Observed: HTTP 404 at http://127.0.0.1:4319/help
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -153,7 +177,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/006.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/007.jpg
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: The Help link opens /help displaying Page not found and This help page is unavailable.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -168,7 +194,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/007.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/009.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: The Help link opens /help showing “404 â€” Page not found” and “This help page is unavailable.”
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -180,7 +208,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/009.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/006.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: Clicking Help opens /help with “Page not found” and “This help page is unavailable.”
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -203,7 +233,9 @@ Observed: HTTP 500 at http://127.0.0.1:4319/api/export
 
 URL: http://127.0.0.1:4319/planner
 
-### ghost-3
+### ghost-3 · browser
+
+Observed: HTTP 500 at http://127.0.0.1:4319/api/export
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -231,7 +263,9 @@ Observed: All three cards remain visible and equally faded after typing coast an
 
 URL: http://127.0.0.1:4319/
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: All three cards remain visible and equally faded after typing coast and pressing Enter, with no search feedback.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -244,14 +278,18 @@ URL: http://127.0.0.1:4319/
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/007.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: All three cards remain visible but faded, including Cedar cabin described as a mountain retreat; no result count or no-match feedback appears.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/001.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: With coast entered, Cedar cabin and Coastal hideaway both appear dimmed and remain in their original order.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -267,7 +305,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/001.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/010.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: Cedar cabin remains first and occupies the visible results area, though dimmed; Coastal hideaway remains below the fold.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -292,7 +332,9 @@ Observed: The planner shows only a blank trip-name form, with no mention of Ceda
 
 URL: http://127.0.0.1:4319/planner
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: Plan a coastal trip opens the generic blank planner with no coastal destination shown.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -306,7 +348,9 @@ URL: http://127.0.0.1:4319/planner
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/008.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: The link opens the same blank trip-name form as the general planning link, with no coastal destination shown.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -323,7 +367,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/008.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/011.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: The planner shows only a blank trip-name form, with no mention of Cedar cabin or its destination.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -341,7 +387,9 @@ Observed: The table shows 2–3 hours and prices from $120–$180 without those 
 
 URL: http://127.0.0.1:4319/compare
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: The table shows 2–3 hours and prices from $120–$180 without those details.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -358,7 +406,9 @@ URL: http://127.0.0.1:4319/compare
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/011.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: The table lists “2 hours,” “3 hours,” “$120,” and “$180” without that context.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -382,7 +432,9 @@ Observed: The link opens /compare, which lists only Cedar cabin and Coastal hide
 
 URL: http://127.0.0.1:4319/compare
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: The link opens /compare, which lists only Cedar cabin and Coastal hideaway, with no City nook details.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -398,7 +450,9 @@ URL: http://127.0.0.1:4319/compare
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/010.jpg
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: Discover advertises three escapes, but comparison includes only Cedar cabin and Coastal hideaway.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -415,7 +469,9 @@ Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-2/010.jpg
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/011.jpg
 
-### ghost-2
+### ghost-2 · Astra
+
+Observed: Only Cedar cabin and Coastal hideaway appear; City nook is omitted without explanation.
 
 1. Open http://127.0.0.1:4319/
 2. fill Search destinations = mountains — http://127.0.0.1:4319/
@@ -439,7 +495,9 @@ Observed: The table extends past the right edge: Best for is clipped and From pr
 
 URL: http://127.0.0.1:4319/compare
 
-### ghost-3
+### ghost-3 · browser
+
+Observed: Document wider than 390px viewport.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -451,7 +509,9 @@ URL: http://127.0.0.1:4319/compare
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-3/006.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: The table extends past the right edge: Best for is clipped and From prices are offscreen. The observation reports horizontal overflow.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -473,7 +533,9 @@ Observed: The heading displays “404 â€” Page not found”.
 
 URL: http://127.0.0.1:4319/help
 
-### ghost-1
+### ghost-1 · Astra
+
+Observed: The heading displays “404 â€” Page not found”.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/
@@ -488,7 +550,9 @@ URL: http://127.0.0.1:4319/help
 
 Evidence: /artifacts/4046b6e1-8479-4c2a-a579-47a4a616ed25/ghost-1/009.jpg
 
-### ghost-3
+### ghost-3 · Astra
+
+Observed: The heading displays “404 â€” Page not found”.
 
 1. Open http://127.0.0.1:4319/
 2. click Plan your weekend → — http://127.0.0.1:4319/

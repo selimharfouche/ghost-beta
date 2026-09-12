@@ -16,3 +16,11 @@ These are production recommendations, not verified Product Hunt upload limits. C
 - Social card: 1200 × 630. “Meet your bugs before your users do.” + actual product crop. Do not add performance claims without measurements.
 
 Do not generate fake app screenshots, benchmark scores, testimonials, user counts, or contest badges. The sample assets may depict a local product; say so when describing installation.
+
+## Captured assets
+
+- `assets/live-exploration.png`: genuine three-Ghost Astra run in progress.
+- `assets/completed-report.png`: completed grouped report.
+- `assets/mobile-evidence.png`: actual mobile-overflow evidence, opened at step 6.
+
+These are original dashboard screenshots; no generated findings or simulated UI. A narrated final launch video remains to be recorded using demo-flow.md.
