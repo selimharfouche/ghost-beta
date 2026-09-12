@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ghost — meet your bugs before your users do</title>
+    <meta
+      name="description"
+      content="Autonomous AI beta testers explore your staging app, discover journeys, and bring back bugs with evidence and replays."
+    />
+    <link rel="icon" href="logo.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      main {
+        margin: auto;
+        max-width: 1200px;
+      }
+      h1 {
+        font-size: clamp(45px, 6vw, 80px);
+        max-width: 900px;
+      }
+      .hero {
+        padding: 80px 0 60px;
+      }
+      .hero p {
+        max-width: 600px;
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+      .line {
+        border-top: 1px solid var(--line);
+        padding-top: 30px;
+      }
+      .number {
+        font: 13px monospace;
+        color: var(--green);
+      }
+      .ghost-card {
+        padding: 30px;
+      }
+      footer {
+        padding: 45px 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <a class="brand" href="https://github.com/selimharfouche/ghost-beta"
+          ><img src="logo.svg" width="36" alt="" />ghost</a
+        ><a class="secondary" href="https://github.com/selimharfouche/ghost-beta">Get Ghost ↗</a>
+      </header>
+      <section class="hero">
+        <span class="eyebrow">AUTONOMOUS BETA TESTERS · POWERED BY ASTRA</span>
+        <h1>
+          You know how your app works.<br /><span>Your first users don’t.</span>
+        </h1>
+        <p>
+          Give Ghost a staging URL. Independent AI testers explore it from
+          scratch, find friction, and bring back the evidence—so you can fix
+          what matters before launch.
+        </p>
+        <a class="primary" href="https://github.com/selimharfouche/ghost-beta">Install Ghost ↗</a>
+      </section>
+      <section class="line"><h2>Watch Ghost explore.</h2><video controls preload="metadata" style="width:100%;max-width:1000px;border-radius:16px" src="ghost-demo.mp4" aria-label="Captioned Ghost demo video"></video><h2>Explore a real recorded run.</h2><p>No login, API key, or installation needed to inspect the evidence.</p><p><a class="secondary" href="4046b6e1-8479-4c2a-a579-47a4a616ed25.html">Waypoint: planted-bug benchmark ↗</a></p><p><a class="secondary" href="3c643512-edd7-4252-869c-c25c2410075b.html">markerpad.app: real-app exploration ↗</a></p><p class="muted">The benchmark uses intentional defects in our demo app. Third-party explorations are separate and may expose coverage limits; they do not establish a bug-detection success rate.</p></section><section class="line">
+        <div class="section-title">
+          <h2>Let the unexpected happen here.</h2>
+          <span class="muted">No predefined test cases</span>
+        </div>
+        <div class="ghost-grid">
+          <article class="ghost-card">
+            <span class="number">01 / DISCOVER</span>
+            <h2>Fresh eyes, different instincts.</h2>
+            <p>
+              A curious newcomer, an impatient visitor, and a mobile explorer
+              take independent paths through your product.
+            </p>
+          </article>
+          <article class="ghost-card">
+            <span class="number">02 / OBSERVE</span>
+            <h2>A finding needs a trail.</h2>
+            <p>
+              Browser errors and Astra’s observations arrive with actions, URLs,
+              screenshots, and the journey that led there.
+            </p>
+          </article>
+          <article class="ghost-card">
+            <span class="number">03 / UNDERSTAND</span>
+            <h2>Replay the moment.</h2>
+            <p>
+              Review grouped findings, follow reproduction steps, and scrub
+              through recorded screenshots. Export a report your team can use.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="line" style="margin-top: 50px">
+        <h2>Built for a developer’s own workspace.</h2>
+        <p>
+          Ghost runs locally with your Codex login and uses your subscription
+          allowance. Bring a staging environment and synthetic data. No API key,
+          cloud account, or paid Ghost plan required for this demo.
+        </p>
+        <p>
+          Automated exploration complements your tests and human feedback.
+          Findings need review; external integrations, authentication gates, and
+          complex embedded interfaces can limit coverage.
+        </p>
+      </section>
+      <footer>
+        Ghost · Web beta · Built for the GPT-6 Astra Challenge<br />ChatGPT /
+        OpenAI / Codex SDK / Playwright
+      </footer>
+    </main>
+  </body>
+</html>
