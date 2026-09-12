@@ -1,12 +1,15 @@
 // Recording aid: follows real mouse events; never receives input or enters the control list.
 export function installRecordingPointer() {
-  const mount = () => {
+  const mount = async () => {
+    if (window !== window.top) return;
+    const position = await window.__ghostRecordingPosition();
     const host = document.createElement('div');
     host.setAttribute('aria-hidden', 'true');
     host.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:2147483647;';
     const shadow = host.attachShadow({mode:'closed'});
-    shadow.innerHTML = `<style>:host{pointer-events:none}#pointer{position:absolute;left:0;top:0;filter:drop-shadow(0 2px 3px #0008);transform:translate(28px,28px)}.ring{position:absolute;border:4px solid #8fdb42;background:#c9f78b55;border-radius:50%;width:40px;height:40px;margin:-20px;animation:pulse .7s ease-out forwards}@keyframes pulse{from{transform:scale(.4);opacity:1}to{transform:scale(1.6);opacity:0}}</style><svg id="pointer" width="28" height="34" viewBox="0 0 28 34"><path d="M2 2L2 26L9 20L15 32L21 29L15 18L25 17Z" fill="#cbf78b" stroke="#101b13" stroke-width="2"/></svg>`;
+    shadow.innerHTML = `<style>:host{pointer-events:none}#pointer{position:absolute;left:0;top:0;filter:drop-shadow(0 2px 3px #0008);transform:translate(0,0)}.ring{position:absolute;border:4px solid #8fdb42;background:#c9f78b55;border-radius:50%;width:40px;height:40px;margin:-20px;animation:pulse .7s ease-out forwards}@keyframes pulse{from{transform:scale(.4);opacity:1}to{transform:scale(1.6);opacity:0}}</style><svg id="pointer" width="28" height="34" viewBox="0 0 28 34"><path d="M2 2L2 26L9 20L15 32L21 29L15 18L25 17Z" fill="#cbf78b" stroke="#101b13" stroke-width="2"/></svg>`;
     const pointer = shadow.querySelector('#pointer');
+    pointer.style.transform = `translate(${position.x}px,${position.y}px)`;
     document.documentElement.append(host);
     document.addEventListener('mousemove', e => {
       pointer.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;

@@ -1,0 +1,13 @@
+import {runGhosts} from '../src/runner.js';
+import {PERSONAS} from '../src/core.js';
+import fs from 'node:fs';
+import path from 'node:path';
+import {randomUUID} from 'node:crypto';
+const id=randomUUID(),root=path.resolve('work/real-runs');
+const p=PERSONAS[0];
+const run={id,url:'https://markerpad.app/',mode:'codex',model:'gpt-6-astra',recordVideo:true,status:'running',createdAt:new Date().toISOString(),maxSteps:12,issues:[],ghosts:[{id:'ghost-1',persona:p.id,name:p.name,label:p.label,status:'queued',steps:[],findings:[],usage:{input_tokens:0,output_tokens:0}}]};
+fs.mkdirSync(path.join(root,id),{recursive:true});
+const controller=new AbortController();process.on('SIGINT',()=>controller.abort());
+let last='';const save=()=>{fs.writeFileSync(path.join(root,id,'run.json'),JSON.stringify(run,null,2));const state=run.status+' '+run.ghosts[0].status+' '+run.ghosts[0].steps.length;if(state!==last){console.log(id,state);last=state;}};
+save();await runGhosts(run,{root,save,signal:controller.signal});
+console.log('Finished',id,run.status);

@@ -96,4 +96,8 @@ The dashboard can optionally record each browser session as a continuous WebM vi
 
 Install the recorder once with `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers npx playwright install ffmpeg`, set `PLAYWRIGHT_BROWSERS_PATH=work/playwright-browsers` in `.env`, and restart Ghost. Enable the recording checkbox before starting a run. Completed agent cards link to the original video.
 
-Recording mode shows a pointer driven by real mouse events, click rings, and gradual typing. The public demo keeps actions at normal speed and shortens reasoning pauses; the uncut recordings are linked separately. This is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.
+Recording mode shows a pointer driven by real mouse events, preserves its position across navigation, and includes click rings and gradual typing. The public demo adds plain-language captions and gentle close-ups, keeps actions at normal speed, and shortens reasoning pauses; the uncut recordings are linked separately. This is a controlled planted-bug demo, not an accuracy benchmark across arbitrary apps.
+
+### Real-app walkthrough
+
+The [public showcase](https://selimharfouche.github.io/ghost-beta/) now leads with a real MarkerPad exploration: document creation, full Markdown entry, formatted preview, and the export flow. The video includes a cursor, click indicators, close-ups, and plain-language captions. Inspect the complete recording and report beside it. Export completion is not claimed, and the accessibility candidate remains unconfirmed. The planted-bug benchmark is presented separately.

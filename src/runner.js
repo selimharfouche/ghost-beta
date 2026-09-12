@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { abortable } from "./abortable.js";
 import { installRecordingPointer, moveRecordingPointer } from "./recording-pointer.js";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -90,8 +91,11 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
           acceptDownloads: false,
           recordVideo: run.recordVideo ? { dir: path.join(dir, "video"), size: { width: persona.width, height: persona.height } } : undefined,
         });
-        if (run.recordVideo) await ctx.addInitScript(installRecordingPointer);
         const pointer = { x: 28, y: 28 };
+        if (run.recordVideo) {
+          await ctx.exposeBinding("__ghostRecordingPosition", () => ({ ...pointer }));
+          await ctx.addInitScript(installRecordingPointer);
+        }
         const origin = new URL(run.url).origin;
         const blockedOrigins = new Set();
         await ctx.route("**/*", (route) => {
@@ -224,13 +228,14 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
               step.thought = "Astra is choosing the next step…";
               save();
               const timeout = AbortSignal.timeout(150000);
-              const result = await decide({
+              const decisionSignal = AbortSignal.any([signal, timeout]);
+              const result = await abortable(decide({
                 persona,
                 observation: obs,
                 history,
                 screenshot,
-                signal: AbortSignal.any([signal, timeout]),
-              });
+                signal: decisionSignal,
+              }), decisionSignal);
               d = result.decision;
               ghost.threadId = result.threadId;
               ghost.usage.input_tokens += result.usage?.input_tokens || 0;
@@ -287,7 +292,7 @@ export async function runGhosts(run, { root, save, signal, browserFactory }) {
                 if (run.recordVideo && ["text", "search", "email", "url", "tel", "password", ""].includes(target.type || "")) {
                   await locator.click({ delay: 180 });
                   await locator.fill("");
-                  await locator.pressSequentially(d.value, { delay: 65 });
+                  await locator.pressSequentially(d.value, { delay: 35, timeout: Math.max(5000, d.value.length * 50 + 5000) });
                 } else await locator.fill(d.value);
               }
               if (d.action === "select") await locator.selectOption(d.value);
